@@ -1,0 +1,29 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+div.wp{
+	width: 640px;
+	height: 34px;
+	margin: 200px auto;
+}
+
+ul li {
+	list-style: none;
+	
+}
+
+ul {
+	border:1px solid #ccc;
+	width: 171px;
+	display: none;
+}
+
+ul li:hover{
+	background-color: #ccc;
+}
+
+ul li.on{
+	background-color: #ccc;
+}
