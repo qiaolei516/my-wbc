@@ -1,0 +1,11 @@
+#layui-layer1,.layui-layer-msg {
+    border: none !important;
+}
+
+#searchBtn {
+    background-color: red;
+    color: #fff;
+}
+.red{
+    background-color: red;
+}

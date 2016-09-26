@@ -1,22 +1,23 @@
 !function(window , document , $ , undefined) {
 	
-	var Datecity , Datearea;
+	var Datecity;
+	var Datearea;
 	
-	$('#province').on('change' , function(){
+		$('#province').on('change' , function(){
 		var val = this.value;
+		console.log( val);
 		Datecity = getcitychild(val , cityData3);
-		
-		incity(Datecity , 'city');
+		console.log(Datecity);
+		incity(Datecity,'city');
 		$('#area').html('<option value="0">请选择</option>')
 	});
-
 
 	function incity(date , render){
 		var arr = ['<option value="0">请选择</option>'] ;
 		
 		$.each(date , function(index, obj){
-			
-		arr.push('<option value=" ' + obj.value +' ">' + obj.text + '</option>');
+			//console.log(obj)
+		arr.push('<option value="' , obj.value ,'">' , obj.text , '</option>');
 			
 			
 		});
@@ -26,21 +27,26 @@
 	}
 
 	var getcitychild=function(val , pardate){
-
 	 	var currchild = [];
-
-	 	$.each(pardate , function(index , obj) {
-
-	 		if(obj.value == val){
+	 	// console.log(val)
+	 	
+	 	$.each(pardate, function(i , obj) {
+	 		console.log(val)
+	 		console.log(obj.value)
+	 		
+	 		if (obj.value == val){
+	 			
 	 		   currchild = obj.children;
-
-	 		    return false;
+	 		   return false;
+	 		   	 		    
 	 		}
+	 	
 	  });
 
 	 	return currchild;
 
 	 };
+	
 
 	
 	incity(cityData3 , 'province');
