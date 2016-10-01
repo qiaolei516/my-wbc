@@ -2,6 +2,9 @@
  * Created by 乔雷 on 2016/9/22.
  */
 !function (window, document, $ ,undefined) {
+    var onSearchBtn,
+        clscache;
+
     var cache = {},
                                                  /*参数s*/
         params = {
@@ -26,7 +29,8 @@
         $('#deleteGoodBtn').on('click' ,onDeleteGoodBtn);
         $('#searchBtn').on('click' , onSearchBtn);
         $('#fenye').on('click' ,'li', onFenyeLi); /*为未来事件绑点击*/
-        // $('#deleteTableList).on('click' ,' tbody input[type = checkbox]' , onChecked);
+        $('#classifyBtn').on('click' , onClassifyBtn);
+         // $('#deleteTableList).on('click' ,' tbody input[type = checkbox]' , onChecked);
 
 
     };
@@ -42,10 +46,6 @@
             page = -- params.page;
             page = page< 0 ? 0 :page;
         }
-
-
-
-
            params.page = page;
            getList();
 
@@ -53,39 +53,44 @@
 
 // 搜索按钮
 
-   var  onSearchBtn = function () {
-       var $searchIptVal = $('#searchIpt').val();
-           params.query = $searchIptVal;
+    onSearchBtn = function () {
+        var $searchIptVal = $('#searchIpt').val();
+        params.query = $searchIptVal;
 
 
+// 回车搜索事件                                       TODO
+        $(document).keypress(function (e) {
+            if (e.which == 13) {
+                $('#searchBtn').click();
+            }
 
-// 回车搜索事件
-       $(document).keypress(function (e) {
-        if(e.which ==13){
-            $('#searchBtn').click();
+        });
+        getList();
+
+        if ($searchIptVal.length == 0) {
+
+            $('#searchBtn').prop('disabled', false);
+
         }
 
-       });
-       getList();
 
-       if ($searchIptVal.length == 0){
-
-           $('#searchBtn').prop('disabled' , false );
-
-       }
-
-
-
-
-   };
+    };
 
 
 
 
     var onUpDateBtn = function () {
-         var  $checkCheckbox = $('#deleteTableList tbody input[type=checkbox]:checked'),
-              id = $checkCheckbox[0].id,
-              weiyiId = cache[id];
+
+
+       var $checkCheckbox = $('#deleteTableList tbody input[type=checkbox]:checked'),
+            id = $checkCheckbox[0].id;
+                                              // console.log($checkCheckbox[0]) dom对象<input id="100" type="checkbox">
+                                              //   console.log($checkCheckbox[0].id)   100,
+            weiyiId = cache[id];
+                                            // console.log(cache[id])cache一个空对象，cache.id相当于=cache[id],id为变量
+                                            //       cache[id]1个对象id=100， title:杯子，picture：5........
+           getClassify();
+
             $('#title').val(weiyiId.title);
             $('#price').val(weiyiId.price);
             $('#details').val(weiyiId.details);
@@ -130,7 +135,7 @@
 
             $checkCheckbox.each(function () {
                  var $this=$(this);
-
+                console.log($this)
                 arrow.push($this.attr('id'));
                 // arrow.push(this.id)
 
@@ -155,6 +160,7 @@
     var onChecked = function () {
 
         var $checkCheckbox = $('#deleteTableList tbody input[type=checkbox]:checked'),
+            $inputCheckbox =$('#deleteTableList tbody input[type=checkbox]'),
             $upDateBtn =$('#updateBtn'),
             len = $checkCheckbox.length;
         if(len > 0){
@@ -171,28 +177,88 @@
         // alert(999);
 
 
+        // 复选框有一个不被选中就false
+
+        if(len == $inputCheckbox.length ){
+            $('#all').prop('checked' , true);
+        }else{
+            $('#all').removeProp('checked' , false);
+        }
+
+
     };
 
+
+
     var  getList = function () {
-        var url = '../../../api/shopping_goods_list.php';
+
+    var getListUrl = '../../../api/shopping_goods_list.php',
+        getStatusUrl = '../../../api/shopping_update_status.php',
+        getClassUrl = "../../../api/shopping_classify_list.php",
+        $checkCheckbox = $('tbody input:checked'),
+        arrow2 = [];
+
+
+
         setTimeout(function () {
-            layer.msg('加载中',  { time :0 ,icon: 16 ,  shade: [0.3,'#000']});
-        } , 0);
-        $.get(url , params, function (response) {
-            if(response.success){
-                pushlist(response);
-                getpage(response);
-            }else{
-                layer.msg('搜索不到!', {offset: 0, shift: 6});
+                     layer.msg('加载中',  { time :0 ,icon: 16 ,  shade: [0.3,'#000']});
+                 } , 0);
+         $.when($.getJSON(getListUrl , params) , $.getJSON(getClassUrl)).done(function (realist , reaclassify) {
+             if(realist[0].success && reaclassify[0].success){
+                 // console.log(realist)
+                 // console.log(realist[0])
+
+                 layer.closeAll('');
             }
 
 
-            layer.closeAll('');
+             clscache = reaclassify[0];
+             pushlist(realist[0] ,reaclassify[0]);
+             getpage(realist[0]);
 
-        } , 'json')
 
+
+
+        });
+        $checkCheckbox.each(function () {
+            var $this=$(this);
+            arrow2.push($this.attr('id'));
+
+        });
+        param={
+            ids:arr2.join(','),
+            status : $('input[name=status]:checked').val()
+        };
+        $.get( getStatusUrl , param , function (response) {
+            if(response.success){
+
+            }
+        })
 
     };
+
+
+
+    // var  getList = function () {
+    //     var url = '../../../api/shopping_goods_list.php';
+    //     setTimeout(function () {
+    //         layer.msg('加载中',  { time :0 ,icon: 16 ,  shade: [0.3,'#000']});
+    //     } , 0);
+    //     $.get(url , params, function (response) {
+    //         if(response.success){
+    //             pushlist(response);
+    //             getpage(response);
+    //         }else{
+    //             layer.msg('搜索不到!', {offset: 0, shift: 6});
+    //         }
+    //
+    //
+    //         layer.closeAll('');
+    //
+    //     } , 'json')
+    //
+    //
+    // };
 
     // 分页
 
@@ -224,18 +290,8 @@
     };
 
 
-
-
-
-
-
-
-
-
-
-
-    var pushlist = function (response) {
-        var data = response.data,
+    var pushlist = function (realist, reaclassify) {
+        var data = realist.data,
             arr = [];
 
         $.each(data , function (index , obj) {
@@ -248,11 +304,12 @@
                 '<tr>',
                 '<td><input id="',obj.id,'" type="checkbox"></td>',
                 '<td>',index + 1,'</td>',
-                '<td>',obj.title,'</td>',
+                '<td title="',obj.title,'"><span class="text-ellipsis">',obj.title,'</span></td>',
                 '<td>￥',obj.price,'</td>',
-                '<td>',obj.details,'</td>',
+                '<td><span class="text-ellipsis">',obj.details,'</span></td>',
                 '<td>',obj.amount,'</td>',
-                '<td>',obj.classify,'</td>',
+                '<td>',getNameById(obj.classify ,reaclassify.data ),'</td>',
+                '<td>',obj.status? '下架' : '上架','</td>',
                 '</tr>'
 
 
@@ -275,6 +332,25 @@
 
 
     };
+
+
+  var getNameById = function (id, arr) {
+      var name;
+      $.each(arr , function (index , obj) {
+
+          if(obj.id ==id){
+              // console.log(id)
+              name = obj.name;
+              return false;
+          }
+
+
+      });
+          return name;
+
+
+  };
+
 
 // 点击保存按钮时
 
@@ -300,12 +376,6 @@
            }
 
 
-
-
-
-
-
-
         // 表单验证
         if($.trim(param.title).length ==0){
             alert('商品名称不能为空');
@@ -328,7 +398,7 @@
 
             return false;
         }
-        if(param.classify ==''){
+        if($('#classify').val() ==0){
             alert('类别不能为空');
 
             return false;
@@ -375,35 +445,70 @@
 
     // 弹出框事件
     var  onAddGoodBtn = function () {
+        getClassify();
 
-        $('#tanck').modal('show');
-        $('#addGoodTitle').text('新增商品');
-         getClassify();
-        $('#hiddenIpt').val(0).end();
-        $('#qingkong').trigger('reset');
+            $('#tanck').modal('show');
+            $('#addGoodTitle').text('新增商品');
 
-
-
+            $('#hiddenIpt').val(0).end();
+            $('#qingkong').trigger('reset');
 
 
     };
+
+    // 类别
 
     var getClassify = function () {
-        // var url = ' url = "../../../api/shopping_goods_update.php";'
+
+        var arr2 =['<option value="0">请选择</option>'];
+
+
+            $.each(clscache.data, function(index , obj) {
+
+               arr2.push('<option value="',obj.id,'">',obj.name,'</option>');
+              });
+
+            $('#classify').html(arr2.join(''));
+
+        };
+         // var url = "../../../api/shopping_classify_list.php";
+         //     layer.msg('加载中',  { time :0 ,icon: 16 ,  shade: [0.3,'#000']});
+         //  $.get(url , function (response) {
+         //      // console.log(response)
+         //      var arr2 =['<option value="0">请选择</option>'];
+         //
+         //    if(response.success){
+         //
+         //        $.each(response.data, function(index , obj) {
+         //
+         //             // console.log(response)             /*对象*/
+         //            // console.log(response.data);    /*数组*/
+         //            arr2.push('<option value="',obj.id,'">',obj.name,'</option>');
+         //        });
+         //        $('#classify').html(arr2.join(''));
+         //        returnfn();
+         //        layer.closeAll();
+         //   }
+         //
+         //
+         //  } , 'json');
 
 
 
 
 
-    };
+
+// 类别管理
+
+   var onClassifyBtn = function () {
+        window.location.href="../classify/classify.html";
+       // window.open("../classify/classify.html");
+
+
+   };
 
 
     init();
-
-
-
-
-
 
     // 复选按钮全选取消
 
@@ -425,16 +530,6 @@
           }
 
 
-           var $checkCheckbox = $('#deleteTableList tbody input[type=checkbox]:checked');
-
-           if($checkCheckbox.length > 0){
-               $('#deleteGoodBtn').prop('disabled' ,false);
-
-
-
-           }else {
-               $('#deleteGoodBtn').prop('disabled' , true);
-           }
 
        });
        //

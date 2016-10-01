@@ -5,12 +5,20 @@
 	
 		$('#province').on('change' , function(){
 		var val = this.value;
-		console.log( val);
+		// console.log( val);
 		Datecity = getcitychild(val , cityData3);
-		console.log(Datecity);
+		// console.log(Datecity);
 		incity(Datecity,'city');
 		$('#area').html('<option value="0">请选择</option>')
 	});
+
+		$('#city').on('change' , function() {
+			var val = this.value;
+			Datearea = getcitychild(val , Datecity);
+			incity( Datearea , 'area');
+
+		});
+
 
 	function incity(date , render){
 		var arr = ['<option value="0">请选择</option>'] ;
@@ -31,8 +39,8 @@
 	 	// console.log(val)
 	 	
 	 	$.each(pardate, function(i , obj) {
-	 		console.log(val)
-	 		console.log(obj.value)
+	 		// console.log(val)
+	 		// console.log(obj.value)
 	 		
 	 		if (obj.value == val){
 	 			

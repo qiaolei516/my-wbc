@@ -6,6 +6,31 @@
     background-color: red;
     color: #fff;
 }
-.red{
+.red {
     background-color: red;
+}
+
+
+#deleteTableList thead th.w-30 {
+    width: 30px;
+}
+#deleteTableList thead th.w-360{
+    width: 360px;
+}
+
+#deleteTableList thead th.w-80{
+    width: 80px;
+}
+
+#deleteTableList thead th.w-100{
+    width: 100px;
+}
+
+
+.text-ellipsis{
+    display: inline-block;
+    width: 343px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }

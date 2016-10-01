@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>简单表单验证</title>
+</head>
+<body>
+
+   <form action="../api2/login2.php" method="POST" onsubmit="return checkForm()">
+     
+     	 <div>
+            <label>账号:<input id="username" name="user" type="text"></label>
+         </div>
+           <br>
+         
+          <div>
+             <label>密码:<input id="key" name="key" type="password"></label>
+         </div>
+          <br>
+          
+          <div>
+             <input id="loginBtn" type="submit" value="登录">
+             <input type="reset" value="清除">
+         </div>
+   
+
+   </form>
+      <script src="../jQuery/jQueryv1.11.3.js"></script>
+      <script>
+			function checkForm(){
+			
+			   var $user = $('#username') ,
+			       $key = $('#key');
+			       if($.trim($user.val()).length == 0){
+			           alert('账号不能为空');
+			           $user.focus();
+			           return false;
+			       }
+			
+			    if($.trim($key.val()).length == 0){
+			        alert('密码不能为空');
+			        $key.focus();
+			        return false;
+			    }
+			
+			      return true;
+			
+			}
+	</script>	
+
+</body>
+</html>

@@ -26,7 +26,7 @@
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <button type="button" class="navbar-toggle collapsed"      data-toggle="collapse"data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -38,8 +38,11 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">商品管理</a></li>
-                        <li><a href="">类别管理</a></li>
+                        <li class="active"><a href="../admint/index.html">商品管理</a></li>
+                        <li id="classifyBtn"><a href="../classify/index2.html">类别管理</a></li>
+                        <li><a href="../user/user.html">用户管理</a></li>
+                        <li><a href="../classify/index2.html">订单管理管理</a></li>
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
@@ -85,8 +88,8 @@
                          <button id="addGoodBtn" type="button" class="btn btn-success">新增商品</button>
                          <button  disabled  id="updateBtn" type="button" class="btn btn-warning">修改商品</button>
                          <button disabled id="deleteGoodBtn" type="button" class="btn btn-danger">删除商品</button>
-                         <button disabled type="button" class="btn btn-info">上架</button>
-                         <button disabled type="button" class="btn btn-info">下架</button>
+                         <button disabled type="button" class="btn btn-info" value="0">上架</button>
+                         <button disabled type="button" class="btn btn-info" value="1">下架</button>
                      </div>
                  </div>
                   <div class="col-md-3 col-md-offset-3">
@@ -104,13 +107,14 @@
              <table id="deleteTableList" class="table table-bordered table-hover table-striped tabletop-20 tablebottom-0">
                  <thead>
                      <tr>
-                         <th><input id="all" type="checkbox"></th>
+                         <th class="w-30"><input id="all" type="checkbox"></th>
                          <th class="thwidth">编号</th>
-                         <th>商品名称</th>
-                         <th>价格</th>
+                         <th class="w-360">商品名称</th>
+                         <th class="w-80">价格</th>
                          <th>商品介绍</th>
-                         <th>库存</th>
-                         <th>类别</th>
+                         <th class="w-80">库存</th>
+                         <th class="w-100">类别</th>
+                         <th>状态</th>
                      </tr>
                  </thead>
                  <tbody>
@@ -179,16 +183,15 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
                         <label  class="col-sm-2 control-label">类别</label>
                         <div class="col-sm-3">
                             <select id="classify" class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <!--<option>1</option>-->
+                                <!--<option>2</option>-->
+                                <!--<option>3</option>-->
+                                <!--<option>4</option>-->
+                                <!--<option>5</option>-->
                             </select>
 
                         </div>

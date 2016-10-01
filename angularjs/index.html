@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+</head>
+
+        
+
+
+
+<body>
+
+
+    <div ng-app="myApp" ng-controller="myCtrl">
+        名字: <input ng-model="name">
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+            $scope.name = "John Doe";
+        });
+    </script>
+    <!--<div ng-app ng-innit="opts=['北京' , '上海' , '广州']" >-->
+
+        <!--<select>-->
+
+            <!--<option value="{{$index}}" ng-repeat="x in opts">-->
+               <!--{{x}}-->
+            <!--</option>-->
+        <!--</select>-->
+
+
+        <!---->
+    <!--</div>-->
+
+
+    <!--<form ng-app name="former" >-->
+        <!--Email:-->
+        <!--<input type="email" name="myEmail" ng-model="text">-->
+         <!--<span ng-show="former.myEmail.$error.email">-->
+             <!--这不是一个合法的邮箱-->
+         <!--</span>-->
+    <!--</form>-->
+
+
+    <!--<form ng-app="input" name="former">-->
+         <!--姓名：-->
+        <!--<input ng-model="text" name="add" required>-->
+        <!---->
+    <!--</form>-->
+
+   <!--<div ng-app="myapp" ng-controller="mycer" >-->
+
+        <!--<h1>{{carname}}</h1>-->
+
+   <!--</div>-->
+
+
+
+<!-- 
+    <div ng-app="myapp" ng-controller="mycer" >
+
+        <ul>
+            <li ng-repeat="x in names">{{x}}</li>
+        </ul>
+
+    </div>
+ -->
+   <!-- <div ng-app="myApp" ng-controller="myCtrl">
+        名字: <input ng-model="name">
+   </div>
+   
+   
+   
+   
+   
+   
+   
+      <script>
+   
+       var app = angular.module("myApp",[]);
+            
+           app.controller('myCtrl', function($scope) {
+   
+            $scope.name = "John Doe";
+   
+        });
+           
+   
+     </script> -->
+
+    <!--  //   var app = angular.module('myapp' ,[]);
+    
+    //      app.controller('mycer' , function ($scope) {
+    
+    //          $scope.carname = 'vivo';
+    //      })
+    
+    //        var app = angular.module('myapp' ,[]);
+    
+    //        app.controller('mycer' , function ($scope) {
+    
+    //            $scope.names = ['Email' , 'linus']
+    //        });
+     -->
+
+
+
+
+
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/underscore/underscore-min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+
+
+
+</body>
+</html>
