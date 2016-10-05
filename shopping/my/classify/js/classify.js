@@ -11,7 +11,6 @@
                classify.clickEven();
                classify.getClassifyList();
 
-
            },
 
         // 绑定所有事件
@@ -35,18 +34,7 @@
 
 
         },
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
         // 修改按钮
         onUpdateBtn:function () {
@@ -64,13 +52,6 @@
 
 
         },
-
-
-
-
-
-
-
 
         // 删除按钮和修改按钮状态
 
@@ -211,10 +192,6 @@
             } ,'json');
 
 
-
-
-
-
             // 表单验证
 
             // Unit.ajax({
@@ -270,16 +247,61 @@
 
     }
 
-
-
-
     allchecked();
 
-
-
+    // var classifyApp = angular.module('classifyApp' ,[]);
+    // classifyApp.controller('classifyController' ,function ($scope ,$http) {
+    //     $scope.paging={
+    //         size:3,
+    //         page:0
+    //     };
+    //
+    //     function renderFenYe() {
+    //         $http({
+    //             url:'../../../api/shopping_classify_list.php',
+    //             method:'get',
+    //             params:{
+    //                 size: $scope.paging.size,
+    //                 page: $scope.paging.page
+    //             }
+    //
+    //         }).success(function (response) {
+    //             if(response.success){
+    //                 $scope.pagetotal =getFenYe(response.data);
+    //             }
+    //         })
+    //
+    //   }
+    //     renderFenYe();
+    //
+    //     var getFenYe =function (Total) {
+    //         var arr=[],
+    //             len = Math.ceil(Total/$scope.allPage.size),
+    //             i;
+    //
+    //         for(i =0 ; i<len; i++){
+    //             arr.push(i)
+    //         }
+    //         return arr;
+    //     };
+    //     $scope.onFenYeLis=function () {
+    //         // console.log(this)
+    //         $scope.paging.page=this.page ;
+    //         renderFenYe();
+    //
+    //     };
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    // });
 
 
 
 
 
 }(window , document , jQuery);
+

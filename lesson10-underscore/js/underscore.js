@@ -8,7 +8,7 @@ _.each(arr,function (index , obj) {
     // console.log(obj)              0.1.2.3.4.索引
 });
 
-
+console.log(_.random(arr.length-1))
 
 
 //
@@ -85,6 +85,12 @@ var student=[{
 
  ];
 
+// var stu = _.keys(arr2)
+//  console.log(stu)   ["name", "age", "gender"] 必须为对象
+
+
+
+
 // var stu=_.find(student , function (key ,val ) {
 //     return key.name ='hij'
 // });
@@ -159,3 +165,47 @@ var stu = _.partition(student , function (obj) {
 });
 
 console.log(stu);
+
+
+
+////////////////////////////////////////数组/////////////////////////////////////////////////////////
+arr = [1, 2, 3, 4, 5, 6];
+
+// var arrow = _.first(arr ,3);   [1, 2, 3]
+//     console.log(arrow)
+
+
+ // var   arrow=_.last(arr ,3);   [4, 5, 6]
+ //       console.log(arrow)
+
+
+// var arrow = _.rest(arr)
+//     console.log(arrow)   [2, 3, 4, 5, 6] 返回除数组第一个元素以外的
+
+
+
+// var arrow = _.initial(arr)
+//      console.log(arrow)              [1, 2, 3, 4, 5] 返回除数组最后一个元素以外的
+
+
+
+
+// arr = [1, 2, 3, 4, 5, 6 , 11 , 20 , 2 , 11];
+//
+// var arrow = _.union(arr);
+// console.log(arrow)        可以数组去重
+
+
+
+    ////////////////////////////////下面是对象的方法////////////////////////////////////////////////////////////
+
+    //
+    // _.delay(function (t) {
+    //
+    //     console.log(t)      text定时器
+    //
+    // } , 2000 , 'text')
+
+
+// var r = _.extend({name: 'aaa'} , {name:'bbb' , age:20})
+// console.log(r)     {name: "bbb", age: 20} 相当于合并。后面的覆盖前面的，前面有的放到后面

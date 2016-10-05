@@ -22,7 +22,15 @@
 
     };
 
+
+    // 注册表单
+
   var  onZhuceSaveBtn =function () {
+
+
+
+
+
        var url = '../..	/api/shopping_user_add.php';
            data ={
                username:$('#username').val(),
@@ -30,18 +38,49 @@
                email:$('#email').val(),
                mobile:$('#mobile').val()
            };
-           $.get(url , data , function (response) {
+
+      //表单验证
+      if($.trim(data.username).length==0){
+          alert('用户名不能为空！！');
+          return;
+      }
+
+      if($.trim(data.password).length==0){
+          alert('密码不能为空！！');
+          return;
+      }
+      if($.trim(data.email).length==0){
+          alert('email不能为空！！');
+          return;
+      }
+      if($.trim(data.mobile).length==0){
+          alert('手机号不能为空！！');
+          return;
+      }
+
+      setTimeout(function () {
+          layer.msg('加载中',  { time :0 ,icon: 16 ,  shade: [0.3,'#000']});
+      } , 0);
+
+
+       $.get(url , data , function (response) {
+           if(response.success){
+               layer.closeAll();
+               $('#biaodan').modal('hide');
+               layer.msg('注册成功!', {offset: 0, shift: 6});
+           }else{
+               layer.msg('注册失败!', {offset: 0, shift: 6});
+           }
 
 
 
 
-
-           } , 'json')
+       } , 'json')
 
   };
 
 
-
+// 注册表单显示
 
     var onZhucaBtn =function () {
         $('#biaodan').modal('show');
@@ -55,6 +94,13 @@
         getAddress();
 
     };
+
+
+
+
+
+
+
 
     //收货地址|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||、
     var getAddress = function () {
@@ -129,37 +175,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     innit();
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -193,7 +193,7 @@
     var  getList = function () {
 
     var getListUrl = '../../../api/shopping_goods_list.php',
-        getStatusUrl = '../../../api/shopping_update_status.php',
+        getStatusUrl = '../../../api/shopping_goods_update_status.php',
         getClassUrl = "../../../api/shopping_classify_list.php",
         $checkCheckbox = $('tbody input:checked'),
         arrow2 = [];
@@ -226,7 +226,7 @@
 
         });
         param={
-            ids:arr2.join(','),
+            ids:arrow2.join(','),
             status : $('input[name=status]:checked').val()
         };
         $.get( getStatusUrl , param , function (response) {
@@ -296,14 +296,16 @@
 
         $.each(data , function (index , obj) {
             var title = obj.title;
+
             if(params.query !=''){
                 title = title.replace(params.query , '<span class="red">' ,params.query, '</span>');
             }
 
+
             arr.push(
                 '<tr>',
                 '<td><input id="',obj.id,'" type="checkbox"></td>',
-                '<td>',index + 1,'</td>',
+                '<td>', index + 1,'</td>',
                 '<td title="',obj.title,'"><span class="text-ellipsis">',obj.title,'</span></td>',
                 '<td>￥',obj.price,'</td>',
                 '<td><span class="text-ellipsis">',obj.details,'</span></td>',

@@ -19,7 +19,7 @@
     <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body ng-app="classifyApp" ng-controller="classifyController">
 <!--开始-->
 
 
@@ -134,11 +134,11 @@
         <nav>
             <ul id="fenye" class="pagination pagination-lg pull-right">
                 <li><a href="#">&laquo;</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
+                <li ng-click="onFenYeLis()" class="active" ng-repeat="page in pagetotal"><a href="#">{{$index +1}}</a></li>
+                <!--<li><a href="#">2</a></li>-->
+                <!--<li><a href="#">3</a></li>-->
+                <!--<li><a href="#">4</a></li>-->
+                <!--<li><a href="#">5</a></li>-->
                 <li><a href="#">&raquo;</a></li>
             </ul>
         </nav>
@@ -204,7 +204,7 @@
 <!--对话框-->
 
     <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-
+    <script src="../../bower_components/angular/angular.min.js"></script>
     <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../bower_components/layer/layer.js"></script>
     <script src="js/unit.js"></script>
