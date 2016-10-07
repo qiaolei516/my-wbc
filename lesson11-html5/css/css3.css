@@ -1,0 +1,114 @@
+*{
+    margin: 0;
+    padding:0;
+}
+
+body{
+    height: 2000px;
+}
+
+
+.text-demo{
+    font-size: 30px;
+    text-shadow: 5px 5px 5px #ccc;
+}
+
+.change{
+
+width: 200px;
+height: 100px;
+background-color: pink;
+margin: 0 auto;
+line-height: 100px;
+text-align: center;
+
+transition: all 1s;
+
+
+}
+
+.change:hover{
+background-color: yellow;
+width: 300px;
+transform:rotate(360deg);
+
+}
+
+
+
+.loading img{
+    animation:img 2s linear infinite ;
+}
+
+@keyframes img{
+    100%{
+       transform: rotate(360deg); 
+    }
+}
+
+
+.wp{
+    display:box;
+    display: -webkit-box;/*不用浮动三列水平布局*/
+    /*-webkit-box-orient: horizontal; 水平排列*/
+    /*-webkit-box-orient: vertical; 垂直排列*/
+}
+
+.wp .left{
+    background-color: red;
+    width: 300px;
+}
+
+
+.wp .content {
+    background-color: #00b3ee;
+    width: 500px;
+    -webkit-box-flex: 1;/*自动填充*/
+}
+
+.wp .right{
+    background-color: yellow;
+    width: 300px;
+}
+
+
+.wp2{
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    height:100%;
+}
+
+
+html ,body{
+    height: 100%;
+}
+
+.wp2 .star{
+    height: 50px;
+    background-color: pink;
+
+
+}
+
+.wp2 .center{
+    -webkit-box-flex: 1;
+    background-color: yellow;
+}
+
+.wp2 .end{
+
+    height: 80px;
+    background-color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+

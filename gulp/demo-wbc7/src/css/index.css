@@ -1,0 +1,48 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-size: 20px;
+}
+
+body{
+    background-color: #f2f2f2;
+}
+
+
+.box{
+    background-color: #ecebde;
+    width: 5.75rem;
+    height: 5.75rem;
+    margin: 4.9rem auto 0;
+    border-radius: 50%;
+    background-image: url(../img/gift.jpg);
+    background-position: center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+
+}
+
+.info{
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: bold;
+    font-family: '微软雅黑';
+
+}
+.btn{
+    width: 9.9rem;
+    height: 2rem;
+    font-size: 0.8rem;
+    background-color: #c70000;
+    border-radius: 5px;
+    margin: 1rem auto 0;
+    text-align: center;
+    line-height: 2rem;
+
+    color: #fff;
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>media query</title>
+    <link rel="stylesheet" href="css/meidia.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .wp{
+           width: 1000px;
+            margin:0 auto;
+        }
+
+        .left , .center , .right{
+            float: left;
+        }
+
+        .left{
+            background-color: red;
+            width: 200px;
+            line-height: 500px;
+        }
+        .center{
+            background-color: yellow;
+            width: 600px;
+            line-height: 500px;
+        }
+        .right{
+            background-color: pink;
+            width: 200px;
+            line-height: 500px;
+        }
+
+       @media screen and(min-width: 640px) and(max-width: 999px){
+           .right{
+               float:none;
+
+
+           }
+
+           .left-wp{
+               overflow: hidden;
+           }
+
+       }
+
+
+
+    </style>
+
+</head>
+<body>
+<div class="wp">
+    <div class="left-wp">
+        <p class="left">left</p>
+        <p class="center">center</p>
+    </div>
+    <p class="right">right</p>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>

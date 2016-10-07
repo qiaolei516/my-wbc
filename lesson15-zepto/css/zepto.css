@@ -1,0 +1,56 @@
+html , body , ul ,li{
+    margin: 0;
+    padding: 0;
+}
+
+ul,li{
+    list-style: none;
+}
+
+header{
+    width: 100%;
+    line-height: 50px;
+    text-align: center;
+    background-color: pink;
+    color: #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+footer{
+    width: 100%;
+    line-height: 40px;
+    text-align: center;
+    background-color: #ccc;
+    color:#fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+section{
+    margin-top: 50px;
+    margin-bottom: 40px;
+
+}
+section li{
+
+    border:1px solid #ccc;
+    height: 40px;
+    line-height: 40px;
+    text-indent: 5px;
+
+
+}
+
+
+
+section li .del{
+    float: right;
+    background-color: red;
+    color: #fff;
+    padding: 0 12px;
+    display: none;
+}
+
