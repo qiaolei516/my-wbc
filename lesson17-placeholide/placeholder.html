@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>placeholder</title>
+</head>
+<style>
+
+    input{
+        position: relative;
+        z-index: 999;
+        background: transparent;
+        border:1px solid #a9a9a9;
+    }
+
+
+    .plh-div{
+        position: relative;
+        display: inline-block;
+    }
+
+    .plh-span{
+        position: absolute;
+        top:0;
+        left:0;
+        bottom:0;
+        width:100%;
+        height:100%;
+        font-size: 14px;
+        color: #a9a9a9;
+    }
+
+
+</style>
+
+
+<body>
+
+<input type="radio">
+<input type="text" data-plh="请输入账号">
+<br>
+<hr>
+<input type="text"  data-plh="请输入密码">
+
+
+<script>
+    function fixplaceholder() {
+//        var input = document.createElement('input');
+//            console.log(input.placeholder == "");
+          var ipts = document.getElementsByTagName('input'),
+                  i,span;
+
+              for(i =0 ; i<ipts.length ; i++){
+                var   plhinfo=ipts[i].getAttribute('data-plh');
+                  if(ipts[i].type !=='text' || !plhinfo){
+                      continue;
+                  }
+////                  console.log(ipts[i].type)
+//                  ipts[i].getAttribute('data-plh')
+//                  console.log( ipts[i].getAttribute('data-plh'))
+                  ipts[i].outerHTML = '<div class="plh-div">'+ipts[i].outerHTML+'<span class="plh-span"></span></div>';
+//                  console.log(ipts[i].outerHTML)
+                  span = ipts[i].parentNode.getElementsByTagName('span')[0];
+
+                  span.innerHTML = plhinfo;
+                  ipts[i].onkeyup = function () {
+                      var val = this.value;
+                        if(val.length==0){
+                            this.parentNode.getElementsByTagName('span')[0].style.display='block' ;
+
+
+                        }else{
+                            this.parentNode.getElementsByTagName('span')[0].style.display='none' ;
+                        }
+
+                  }
+
+              }
+              
+
+
+
+    }
+
+
+    fixplaceholder();
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

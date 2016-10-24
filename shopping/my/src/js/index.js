@@ -26,16 +26,22 @@
     var onDengLuBtn =function () {
 
         var data={
-            user:('#username').val(),
-            pswd:('#password').val()
+            user:$('#username').val(),
+
+            pswd:$('#password').val()
 
 
         };
 
-        url="../../../api/shopping_user_login.php";
-         $.get(url ,data, function (response) {
+       var url="../../../api/shopping_user_login.php";
+         $.get(url ,data, function (response){
+             if(response.success){
+                 location.href = 'index.php';
+             }else{
+                 alert('登录失败!')
+             }
 
-         } , 'json');
+         }, 'json');
 
 
 

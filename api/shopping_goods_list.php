@@ -4,6 +4,7 @@ require_once ('util/db.php');
 
 @$query = $_GET['query'];
 @$pageSize = $_GET['size'];
+@$classify = $_GET['classify'];
 
 @$page = $_GET['page'];
 if (!isset($page)) {
@@ -14,6 +15,10 @@ if (!isset($pageSize)) {
     $pageSize = 20;
 }
 
+if (!isset($classify)) {
+    $classify = '';
+}
+
 $start = $pageSize * $page;
 
 $sql = "select * from goods where 1=1";
@@ -22,6 +27,11 @@ $sql2 = "select count(*) as count from goods where 1=1";
 if (isset($query) && $query != '') {
     $sql .= " and title like '%".$query."%' ";
     $sql2 .= " and title like '%".$query."%' ";
+}
+
+if (isset($classify) && $classify != '') {
+    $sql .= " and classify = $classify";
+    $sql2 .= " and classify = classify";
 }
 
 $sql .= " order by id desc limit $start, $pageSize";

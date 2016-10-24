@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+//    原始模式
+  function Dog(name , color) {
+      var obj = {
+          name:name,
+          color:color
+      };
+      return obj;
+  }
+var dog1 = {name:'doudou' , color:'black'};
+
+  Dog();
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//    构造模式
+//
+//function Dog(name , color) {
+//
+//        this.name=name;
+//        this.color=color;
+//         this.type = 'animail';
+//         this.run = function () {
+//              console.log(this.name+'is running');
+//          }
+//
+//}
+//
+//var dog2 = new Dog('dd1' , 'white'),
+//    dog3= new Dog('dd2' , 'yellow');
+//
+//
+//
+//Dog();
+
+
+
+//原型模式
+function Dog(name , color) {
+
+    this.name=name;
+    this.color=color;
+
+}
+
+
+   Dog.prototype = {
+        type: 'animail',
+        run: function () {
+            console.log(this.name + 'is running')
+        }
+
+};
+
+
+var dog4 = new Dog('wangcai' , 'white');        /*实例*/
+    dog5= new Dog('dudu' , 'yellow');
+
+
+
+Dog();
+
+
+//  继承
+//  function Animal() {
+//      this.type = 'animal';
+//      this.color = undefined;
+//      this.eat = function () {
+//         console.log('eat......')
+//      }
+//  }
+//
+//function Dog(name) {
+//    this.name = name ;
+//    this.kanmen = function () {
+//       console.log(this.name+'kanmen......')
+//    }
+//
+//}
+//
+//function Cat(name) {
+//    this.name = name ;
+//    this.zhuayu = function () {
+//        console.log(this.name+'zhuayu......')
+//    }
+//
+//}
+//
+//Dog.prototype = new Animal();
+//Dog.prototype.constructor=Dog;
+//
+//
+//var d1 =new Dog('wangcai');
+//
+//var c1 =new Cat('mimi');
+//
+//
+//
+//
+//
+//Animal()
+
+
+
+//方法二
+//function Animal() {
+//
+//    this.color = undefined;
+//
+//}
+//
+// Animal.prototype ={
+//    type : 'animal',
+//    eat:function () {
+//        console.log('eat......');
+//    }
+//};
+//
+//
+//
+//
+//function Dog(name) {
+//    this.name = name ;
+//    this.kanmen = function () {
+//        console.log(this.name+'kanmen......')
+//    }
+//
+//}
+//
+//function Cat(name) {
+//    this.name = name ;
+//    this.zhuayu = function () {
+//        console.log(this.name+'zhuayu......')
+//    }
+//
+//}
+//
+//Dog.prototype=Animal.prototype;
+//Dog.prototype.constructor = Dog;
+//
+//var d1 =new Dog('wangcai');
+//
+//var c1 =new Cat('mimi');
+//
+//
+//
+//
+//
+//Animal()
+
+//方法三
+
+
+function Animal() {
+
+    this.color = undefined;
+
+}
+
+ Animal.prototype ={
+    type : 'animal',
+    eat:function () {
+        console.log('eat......');
+    }
+};
+function Dog(name) {
+    this.name = name ;
+    this.kanmen = function () {
+        console.log(this.name+'kanmen......')
+    }
+
+}
+
+function Cat(name) {
+    this.name = name ;
+    this.zhuayu = function () {
+        console.log(this.name+'zhuayu......')
+    }
+
+}
+
+function extend(child , parent) {
+    var F = function () {};
+        F.prototype = parent.prototype;
+        child.prototype = new F();
+        child.prototype.constructor = Dog;
+}
+
+
+extend(Dog , Animal);
+
+
+
+var d1 =new Dog('wangcai');
+
+var c1 =new Cat('mimi');
+
+
+
+
+
+Animal()
+
+
+//   实现继承，对象冒充
+
+
+ function A(name) {
+     this.name = name ;
+     this.getName = function () {
+       return 'the.name is:' + this.name + ',color:'+this.color;
+     }
+ }
+
+function B(name , color) {
+    this.name = name;
+    this.color=color;
+
+}
+
+var a = new A('aaa');
+var b = new B('bbb' , 'red') ;
+
+var f = a.getName.apply(b);
+
+
+//面试题
+
+
+var fullName = 'tom';
+var obj = {
+    fullName:'may',          /*干扰项*/
+    prop:{
+        fullName :'rosa',
+         getName:function () {
+             return this.fullName;
+         }
+    }
+};
+
+console.log(obj.prop.fullName);
+ var test = obj.prop.getName;
+  console.log(test())   /*test指向window.test*/
+/*怎么console.log(test())得到rosa*/
+
+ var r = test.apply(obj.prop)
+//     r = test.call(obj.prop)
+     console.log(r)
+
+
+
+//  非构造函数的继承  
+    
+ var Animal = {
+     type:'animal',
+     eat:function () {
+         console.log(this.name + 'eating.....')
+     }
+ };
+
+  function object(o) {
+      function f() {};
+      f.prototype = o;
+      return new f();
+  }
+    
+ var Dog = object(Animal);
+     Dog.name = 'aaa';
+     Dog.kanm =function () {
+        console.log(this.name +'正在看门....')
+     }
+    
+//   浅复制
+
+    function extend(parent) {
+        var child = {};
+        for (var i in parent){
+            child[i] = parent[i];
+
+        }
+        return child;
+    }
+    
+    var Dog1 = extend(Animal);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

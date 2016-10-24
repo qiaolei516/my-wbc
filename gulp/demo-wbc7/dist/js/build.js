@@ -1,0 +1,1 @@
+!function(){console.log("index1........"),$("button").on("click",function(){alert(9999)})}(),!function(){function n(){console.log("index2....")}n(),console.log("test")}();

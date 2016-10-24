@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组去重</title>
+</head>
+<body>
+
+
+<script>
+
+    var array = [2 , 5 , 9 , 11 , 2 , 9 , 20];
+       function unit(response) {
+           var arr=[],
+                i;
+           for(i = 0; i < response.length; i++){
+               if(arr.indexOf(response[i])<0){
+
+//                  indexOf[2]=0;  indexOf[5]=1;  indexOf[2]=4
+
+                   arr.push(response[i])
+               }
+
+           }
+
+           return arr;
+       }
+
+
+      var newarr = unit(array);
+
+      console.log(newarr)
+
+
+//  function inarray(val ,arr ){
+//      var index = -1;
+//          if(arr[i]==val){
+//
+//          }
+//
+// }
+
+
+
+
+
+
+    var str='ab , c, d, e, f, g';
+    function arry(str) {
+       var  empty =[];
+            str.split(',');
+//        console.log(str)
+       for(var i =0; i<str.length; i++){
+
+           empty.push(str);
+
+           return empty;
+       }
+
+
+
+
+
+
+
+//        return str;
+    }
+
+
+
+
+    var r = arry(str)
+
+
+    console.log(r)
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

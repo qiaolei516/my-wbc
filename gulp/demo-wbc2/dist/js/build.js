@@ -1,0 +1,1 @@
+!function(){console.log("test")}(),!function(){$("button").on("click",function(){alert(3333)})}();
