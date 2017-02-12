@@ -13,9 +13,11 @@ $(document).ready(function() {
 	  function gundong() {
 	  	  time = setInterval(function() {
 		
-		    $ul.animate({marginLeft : -width} , 500 , function() {
+		    $ul.animate({marginLeft : -width*len} , 500 , function() {
 			    $ul.append($ul.find('li:first'))
-			       .css('margin-left' , 0) ;
+                   .css('margin-left' , 0) ;
+                   
+			       
 			
 		    })
 		
